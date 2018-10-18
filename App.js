@@ -68,10 +68,10 @@ export default class Form extends Component {
   // }
   render() {
     return (
-      <View style={StyleSheet.container}>
+      <View style={styles.container}>
         <Image style={styles.image}
           source={this.state.imageSource != null ? this.state.imageSource :
-            require('./images/Nikitty.jpg')}
+            require('./images/card_whisperer_logo2.jpg')}
         />
         <TouchableOpacity style={styles.button} onPress={this.selectPhoto.bind(this)}>
           <Text style={styles.text}>Select</Text>
@@ -80,9 +80,9 @@ export default class Form extends Component {
           ref={cam => {
             this.camera = cam;
           }}
-          style={styles.preview}
+          // style={styles.preview}
           aspect={Camera.constants.Aspect.fill}>
-          <Text style={styles.capture} onPress={this.takePicture.bind(this)}> [CAPTURE] </Text>
+          
         </Camera>
         
       </View>
@@ -97,25 +97,33 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#A0A0A0',
+    backgroundColor: '#ffff00',
   },
   button: {
-    width: 250,
-    height: 50,
-    backgroundColor: '#330066',
+    flex: 1,
+    width: 400,
+    height: 250,
+    backgroundColor: '#000000',
     borderRadius: 30,
     justifyContent: 'center',
     marginTop: 15,
+    marginBottom: 15,
+   
+    
   },
   text: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 100,
     textAlign: 'center',
   },
   image: {
-    width: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 400,
     height: 200,
     marginTop: 30,
+    
+    
   },
   preview: {
     flex: 1,
