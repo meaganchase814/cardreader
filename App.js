@@ -28,6 +28,8 @@ export default class Form extends Component {
     }
 
   }
+ 
+
   takePicture() {
     this.camera.capture()
       .then((data) => console.log(data))
@@ -69,12 +71,14 @@ export default class Form extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <TouchableOpacity accessible={true} acessibilityLabel="Card Whisperer" accessibilityHint="Card Whisperer" >
         <Image style={styles.image}
           source={this.state.imageSource != null ? this.state.imageSource :
             require('./images/card_whisperer_logo2.jpg')}
-        />
-        <TouchableOpacity style={styles.button} onPress={this.selectPhoto.bind(this)}>
-          <Text style={styles.text}>Select</Text>
+        /></TouchableOpacity>
+        <TouchableOpacity  style={styles.button} onPress={this.selectPhoto.bind(this)}>
+          <Text accessible={true}
+      acessibilityLabel="Select" accessibilityHint="Tap to start Card Whisperer" style={styles.text}>Select</Text>
         </TouchableOpacity>
         <Camera
           ref={cam => {
