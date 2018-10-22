@@ -4,8 +4,8 @@ import { StyleSheet, Button, TouchableHighlight } from 'react-native';
 export default class CaptureButton extends React.Component {
     render() {
         return (
-            <TouchableHighlight style={styles.captureButton} disabled={this.props.buttonDisabled}>
-            <Button onPress={this.props.onClick} disabled={this.props.buttonDisabled} title="Capture" accessibilityLabel="Learn more about this button"/>
+            <TouchableHighlight style={styles.captureButton} >
+            <Button onPress={this.props.onClick}  title="Capture" accessibilityLabel="Take picture"/>
             </TouchableHighlight>
         );
     }

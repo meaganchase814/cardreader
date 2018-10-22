@@ -22,12 +22,13 @@ import Camera from './components/Camera.js';
 
 
 export default class Form extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    process.nextTick = setImmediate,
     this.state = {
       imageSource: null,
       data: null,
-    
+      
        
     }
 

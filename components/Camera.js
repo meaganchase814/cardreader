@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Dimensions, Alert, StyleSheet, ActivityIndicator } from 'react-native';
+import { Text, Dimensions, Alert, StyleSheet, ActivityIndicator } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import CaptureButton from './CaptureButton.js'
 
@@ -17,7 +17,7 @@ export default class Camera extends React.Component {
    takePicture = async function(){
 
        if (this.camera) {
-
+            console.log("this is where we are")
            // Pause the camera's preview
            this.camera.pausePreview();
 
@@ -30,17 +30,19 @@ export default class Camera extends React.Component {
            const options = {
                base64: true
            };
-
+           
+            console.log("about to take picture")
            // Get the base64 version of the image
            const data = await this.camera.takePictureAsync(options)
-
+           console.log("took picture async")
            // Get the identified image
+           
            this.identifyImage(data.base64);
        }
    }
 
    identifyImage(imageData){
-
+    console.log("this is the identify part")
        // Initialise Clarifai api
        const Clarifai = require('clarifai');
 
@@ -64,7 +66,7 @@ export default class Camera extends React.Component {
        }));
 
    // Show an alert with the answer on
-   Alert.alert(
+        Alert.alert(
            this.state.identifiedAs,
            '',
            { cancelable: false }
