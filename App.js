@@ -8,16 +8,18 @@
 
 import React, { Component } from 'react';
 import {AppRegistry, Dimensions, Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import ImagePicker from 'react-native-image-picker';
+//import ImagePicker from 'react-native-image-picker';
 //import RNFetchBlob from 'rn-fetch-blob'
-import Camera from 'react-native-camera';
+//import Camera from 'react-native-camera';
+import Camera from './components/Camera.js';
 
-const options = {
-  title: 'Select a photo',
-  takePhotoButtonTitle: 'Take a photo',
-  chooseFromLibraryButtonTitle: 'Choose from gallery',
-  quality: 1,
-};
+// const options = {
+//   title: 'Select a photo',
+//   takePhotoButtonTitle: 'Take a photo',
+//   chooseFromLibraryButtonTitle: 'Choose from gallery',
+//   quality: 1,
+// };
+
 
 export default class Form extends Component {
   constructor() {
@@ -25,34 +27,36 @@ export default class Form extends Component {
     this.state = {
       imageSource: null,
       data: null,
+    
+       
     }
 
   }
- 
 
-  takePicture() {
-    this.camera.capture()
-      .then((data) => console.log(data))
-      .catch(err => console.error(err));
-  }
-  selectPhoto() {
-    ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
 
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else {
-        let source = { uri: response.uri };
+  // takePicture() {
+  //   this.camera.capture()
+  //     .then((data) => console.log(data))
+  //     .catch(err => console.error(err));
+  // }
+  // selectPhoto() {
+  //   ImagePicker.showImagePicker(options, (response) => {
+  //     console.log('Response = ', response);
 
-        this.setState({
-          imageSource: source,
-          data: response.data,
-        });
-      }
-    });
-  }
+  //     if (response.didCancel) {
+  //       console.log('User cancelled image picker');
+  //     } else if (response.error) {
+  //       console.log('ImagePicker Error: ', response.error);
+  //     } else {
+  //       let source = { uri: response.uri };
+
+  //       this.setState({
+  //         imageSource: source,
+  //         data: response.data,
+  //       });
+  //     }
+  //   });
+  // }
 
   // uploadPhoto() {
   //   RNFetchBlob.fetch('POST', 'http://www.example.com/upload-form', {
@@ -70,8 +74,8 @@ export default class Form extends Component {
   // }
   render() {
     return (
-      <View style={styles.container}>
-        <TouchableOpacity accessible={true} acessibilityLabel="Card Whisperer" accessibilityHint="Card Whisperer" >
+      <View style={styles.container} accessible={true} >
+        {/* <TouchableOpacity accessible={true} acessibilityLabel="Card Whisperer" accessibilityHint="Card Whisperer" >
         <Image style={styles.image}
           source={this.state.imageSource != null ? this.state.imageSource :
             require('./images/card_whisperer_logo2.jpg')}
@@ -79,15 +83,10 @@ export default class Form extends Component {
         <TouchableOpacity  style={styles.button} onPress={this.selectPhoto.bind(this)}>
           <Text accessible={true}
       acessibilityLabel="Select" accessibilityHint="Tap to start Card Whisperer" style={styles.text}>Select</Text>
-        </TouchableOpacity>
-        <Camera
-          ref={cam => {
-            this.camera = cam;
-          }}
-          // style={styles.preview}
-          aspect={Camera.constants.Aspect.fill}>
-          
-        </Camera>
+        </TouchableOpacity> */}
+        <Camera/>
+        
+       
         
       </View>
     );
