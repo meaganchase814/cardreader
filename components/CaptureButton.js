@@ -5,7 +5,7 @@ export default class CaptureButton extends React.Component {
     render() {
         return (
             <TouchableHighlight onPress={this.props.onClick}>  
-              <Image style={styles.captureButton}  title="Capture" accessibilityLabel="Take picture"/>
+              <Image style={styles.captureButton} accessible={true} accessibilityLabel="Take picture"/>
             </TouchableHighlight>
         );
     }

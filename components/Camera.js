@@ -42,19 +42,29 @@ export default class Camera extends React.Component {
    }
 
    identifyImage(imageData){
-    console.log("this is the identify part")
-       // Initialise Clarifai api
-       const Clarifai = require('clarifai');
+    const payload =  {
+        "payload": {
+          "image": {
+            "imageBytes": imageData
+          },
+        }
+      };
 
-       const app = new Clarifai.App({
-           apiKey: '3e6679b029c0487da7c3c9bb8fd84eab'
-       });
-
-       // Identify the image
-       app.models.predict(Clarifai.GENERAL_MODEL, {base64: imageData})
-       .then((response) => this.displayAnswer(response.outputs[0].data.concepts[0].name)
-       .catch((err) => alert(err))
-       );
+      axios({
+        method: 'post',
+        url: "https://automl.googleapis.com/v1beta1/projects/totemic-ground-219514/locations/us-central1/models/ICN6280896592581654906:predict",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + this.props.bearerToken.access_token 
+        }, 
+        data: payload    
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) =>{
+        console.log(error.response)
+      })
    }
 
    displayAnswer(identifiedImage){
